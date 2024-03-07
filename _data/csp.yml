@@ -1,0 +1,16 @@
+# CSP course meta data
+Unit1:
+  title: Introduction to Tools and Resources
+  description: The initial weeks focus on introducing Tools, Pair Programming, and the AP Resources that we plan to use throughout the year. At the end of Weeks 0-3, students will be exposed to blogging with GitHub Pages; developing with Jupyter Notebooks, Python, JavaScript, HTML, and Code.org AppLab; working with AP classroom and becoming familiar with Create Performance Task project requirements.
+  start: 0
+  end: 3
+Unit2:
+  title: Web Development Layers
+  description: During Weeks 4-7, students will delve into the layers used in Web Development. They will learn about the key components that make up websites, including the Frontend, Backend, and Data layers.
+  start: 4
+  end: 7
+Unit3:
+  title:  Web Application, Data, and N@tM
+  description: Student teams need to build their own Website and individuals need to blog their learnings. The team Website should include interests, but also requires the use of Python Flask and JavaScript programming.  By the end of the Sprint, students will be ready to start many of the technical coding aspects of Web Development; having established a Deployed Website, Frontend, and Backend.  In November, the Trimester will end by presenting team project at the Electives Department "Night at the Museum" (N@tM). 
+  start: 8
+  end: 12

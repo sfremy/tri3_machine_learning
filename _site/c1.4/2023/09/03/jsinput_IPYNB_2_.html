@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>JS Inputs | CompSci Blogs</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="JS Inputs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="General tutorial for JavaScript basic functionality." />
+<meta property="og:description" content="General tutorial for JavaScript basic functionality." />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/c1.4/2023/09/03/jsinput_IPYNB_2_.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/c1.4/2023/09/03/jsinput_IPYNB_2_.html" />
+<meta property="og:site_name" content="CompSci Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-03T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="JS Inputs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-03T00:00:00-07:00","datePublished":"2023-09-03T00:00:00-07:00","description":"General tutorial for JavaScript basic functionality.","headline":"JS Inputs","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/c1.4/2023/09/03/jsinput_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/c1.4/2023/09/03/jsinput_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=63838579fe931db354edc3470df1d250d658967f">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/csablog/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4200/csablog/">CompSci Blogs</a></h1>
+
+        
+
+        <p>August 2023 to June 2024</p>
+
+        
+        <p class="view"><a href="https://github.com/sfremy/csablog">View the Project on GitHub <small>sfremy/csablog</small></a></p>
+        
+
+        
+
+        <header class="site-header">
+
+  <div id="header">
+    <nav>
+      <ul>
+        <li class="fork"><a href="/csablog/">Home</a></li>
+        <li class="fork"><a href="/csablog/csp">CompSci</a></li>
+        <li class="fork"><a href="/csablog/blogs">Blogs</a></li>
+        <li class="fork"><a href="/csablog/login">Login</a></li>
+        <li class="title"><a href="https://github.com/sfremy/csablog#readme">View On GitHub</a></li>
+      </ul>
+    </nav>
+  </div><!-- end header -->
+</header>
+
+        
+      </header>
+      <section>
+
+      <small>3 September 2023</small>
+<h1>JS Inputs</h1>
+
+<p class="view">by </p>
+
+<h1 id="sample-code-grade-calculator">Sample Code (Grade Calculator)</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Heading</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Grade</span> <span class="n">Calculator</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Input</span> <span class="n">scores</span><span class="p">,</span> <span class="n">press</span> <span class="n">tab</span> <span class="n">to</span> <span class="n">add</span> <span class="n">each</span> <span class="n">new</span> <span class="n">number</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Totals</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span>
+    <span class="n">Total</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="nb">id</span><span class="o">=</span><span class="s">"total"</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+    <span class="n">Count</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="nb">id</span><span class="o">=</span><span class="s">"count"</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+    <span class="n">Average</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="nb">id</span><span class="o">=</span><span class="s">"average"</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Rows</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s">"scores"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">generated</span> <span class="n">inputs</span> <span class="o">--&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">Creates</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">input</span> <span class="n">box</span>
+<span class="n">function</span> <span class="n">newInputLine</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="o">//</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">label</span> <span class="k">for</span> <span class="n">each</span> <span class="n">score</span> <span class="n">element</span>
+    <span class="n">var</span> <span class="n">title</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">'label'</span><span class="p">);</span>
+    <span class="n">title</span><span class="p">.</span><span class="n">htmlFor</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
+    <span class="n">title</span><span class="p">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="s">". "</span><span class="p">;</span>    
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"scores"</span><span class="p">).</span><span class="n">appendChild</span><span class="p">(</span><span class="n">title</span><span class="p">);</span> <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">HTML</span>
+
+    <span class="o">//</span> <span class="n">Setup</span> <span class="n">score</span> <span class="n">element</span> <span class="ow">and</span> <span class="n">attributes</span>
+    <span class="n">var</span> <span class="n">score</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"input"</span><span class="p">);</span> <span class="o">//</span> <span class="nb">input</span> <span class="n">element</span>
+    <span class="n">score</span><span class="p">.</span><span class="nb">id</span> <span class="o">=</span>  <span class="n">index</span><span class="p">;</span>  <span class="o">//</span> <span class="nb">id</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">element</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">onkeydown</span> <span class="o">=</span> <span class="n">calculator</span> <span class="o">//</span> <span class="n">Each</span> <span class="n">key</span> <span class="n">triggers</span> <span class="n">event</span> <span class="p">(</span><span class="n">using</span> <span class="n">function</span> <span class="k">as</span> <span class="n">a</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">score</span><span class="p">.</span><span class="nb">type</span> <span class="o">=</span> <span class="s">"number"</span><span class="p">;</span> <span class="o">//</span> <span class="n">Use</span> <span class="n">text</span> <span class="nb">type</span> <span class="n">to</span> <span class="n">allow</span> <span class="n">typing</span> <span class="n">multiple</span> <span class="n">characters</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"score"</span><span class="p">;</span>  <span class="o">//</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">group</span> <span class="s">"score"</span> <span class="n">elements</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">textAlign</span> <span class="o">=</span> <span class="s">"right"</span><span class="p">;</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="s">"5em"</span><span class="p">;</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"scores"</span><span class="p">).</span><span class="n">appendChild</span><span class="p">(</span><span class="n">score</span><span class="p">);</span>  <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">HTML</span>
+
+    <span class="o">//</span> <span class="n">Create</span> <span class="ow">and</span> <span class="n">add</span> <span class="n">blank</span> <span class="n">line</span> <span class="n">after</span> <span class="nb">input</span> <span class="n">box</span>
+    <span class="n">var</span> <span class="n">br</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"br"</span><span class="p">);</span>  <span class="o">//</span> <span class="n">line</span> <span class="k">break</span> <span class="n">element</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"scores"</span><span class="p">).</span><span class="n">appendChild</span><span class="p">(</span><span class="n">br</span><span class="p">);</span> <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">HTML</span>
+
+    <span class="o">//</span> <span class="n">Set</span> <span class="n">focus</span> <span class="n">on</span> <span class="n">the</span> <span class="n">new</span> <span class="nb">input</span> <span class="n">line</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="n">index</span><span class="p">).</span><span class="n">focus</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Handles</span> <span class="n">event</span> <span class="ow">and</span> <span class="n">calculates</span> <span class="n">totals</span>
+<span class="n">function</span> <span class="n">calculator</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">key</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">key</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">the</span> <span class="n">pressed</span> <span class="n">key</span> <span class="ow">is</span> <span class="n">the</span> <span class="s">"Tab"</span> <span class="n">key</span> <span class="p">(</span><span class="n">key</span> <span class="n">code</span> <span class="mi">9</span><span class="p">)</span> <span class="ow">or</span> <span class="s">"Enter"</span> <span class="n">key</span> <span class="p">(</span><span class="n">key</span> <span class="n">code</span> <span class="mi">13</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">===</span> <span class="s">"Tab"</span> <span class="o">||</span> <span class="n">key</span> <span class="o">===</span> <span class="s">"Enter"</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="n">event</span><span class="p">.</span><span class="n">preventDefault</span><span class="p">();</span> <span class="o">//</span> <span class="n">Prevent</span> <span class="n">default</span> <span class="n">behavior</span> <span class="p">(</span><span class="n">tabbing</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">element</span><span class="p">)</span>
+   
+        <span class="n">var</span> <span class="n">array</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementsByName</span><span class="p">(</span><span class="s">'score'</span><span class="p">);</span> <span class="o">//</span> <span class="n">setup</span> <span class="n">array</span> <span class="n">of</span> <span class="n">scores</span>
+        <span class="n">var</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="o">//</span> <span class="n">running</span> <span class="n">total</span>
+        <span class="n">var</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="o">//</span> <span class="n">count</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">elements</span> <span class="k">with</span> <span class="n">valid</span> <span class="n">values</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="o">//</span> <span class="n">iterate</span> <span class="n">through</span> <span class="n">array</span>
+            <span class="n">var</span> <span class="n">value</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">value</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">var</span> <span class="n">parsedValue</span> <span class="o">=</span> <span class="n">parseFloat</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="n">parsedValue</span><span class="p">;</span>  <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">running</span> <span class="n">total</span>
+                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="o">//</span> <span class="n">update</span> <span class="n">totals</span>
+        <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'total'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">total</span><span class="p">.</span><span class="n">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="o">//</span> <span class="n">show</span> <span class="n">two</span> <span class="n">decimals</span>
+        <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'count'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'average'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="p">(</span><span class="n">total</span> <span class="o">/</span> <span class="n">count</span><span class="p">).</span><span class="n">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'average'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="s">"0.0"</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="o">//</span> <span class="n">adds</span> <span class="n">newInputLine</span><span class="p">,</span> <span class="n">only</span> <span class="k">if</span> <span class="nb">all</span> <span class="n">array</span> <span class="n">values</span> <span class="n">satisfy</span> <span class="n">parseFloat</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">===</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementsByName</span><span class="p">(</span><span class="s">'score'</span><span class="p">).</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">newInputLine</span><span class="p">(</span><span class="n">count</span><span class="p">);</span> <span class="o">//</span> <span class="n">make</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">input</span> <span class="n">line</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Creates</span> <span class="mi">1</span><span class="n">st</span> <span class="nb">input</span> <span class="n">box</span> <span class="n">on</span> <span class="n">Window</span> <span class="n">load</span>
+<span class="n">newInputLine</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/sfremy">sfremy</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linux Shell &amp; Bash Usage | CompSci Blogs</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Linux Shell &amp; Bash Usage" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Bash Tutorial .ipynb test." />
+<meta property="og:description" content="Bash Tutorial .ipynb test." />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/c1.4/2023/08/31/linux_IPYNB_2_.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/c1.4/2023/08/31/linux_IPYNB_2_.html" />
+<meta property="og:site_name" content="CompSci Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-31T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linux Shell &amp; Bash Usage" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-31T00:00:00-07:00","datePublished":"2023-08-31T00:00:00-07:00","description":"Bash Tutorial .ipynb test.","headline":"Linux Shell &amp; Bash Usage","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/c1.4/2023/08/31/linux_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/c1.4/2023/08/31/linux_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=63838579fe931db354edc3470df1d250d658967f">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/csablog/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4200/csablog/">CompSci Blogs</a></h1>
+
+        
+
+        <p>August 2023 to June 2024</p>
+
+        
+        <p class="view"><a href="https://github.com/sfremy/csablog">View the Project on GitHub <small>sfremy/csablog</small></a></p>
+        
+
+        
+
+        <header class="site-header">
+
+  <div id="header">
+    <nav>
+      <ul>
+        <li class="fork"><a href="/csablog/">Home</a></li>
+        <li class="fork"><a href="/csablog/csp">CompSci</a></li>
+        <li class="fork"><a href="/csablog/blogs">Blogs</a></li>
+        <li class="fork"><a href="/csablog/login">Login</a></li>
+        <li class="title"><a href="https://github.com/sfremy/csablog#readme">View On GitHub</a></li>
+      </ul>
+    </nav>
+  </div><!-- end header -->
+</header>
+
+        
+      </header>
+      <section>
+
+      <small>31 August 2023</small>
+<h1>Linux Shell & Bash Usage</h1>
+
+<p class="view">by </p>
+
+<h1 id="how-to-use-bash">How to Use Bash</h1>
+<h2 id="overview">Overview</h2>
+<p>
+Bash is a shell and command language used by most Linux operating systems. It is a command-line interface but can also read and execute commands from a file, as is being done here.
+</p>
+
+<h2 id="setup">Setup</h2>
+<p>
+To make a Bash script in VSCode's Jupyter notebook implementation, use 'Shell Script' as the cell type and open with "%%script bash".
+</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+</code></pre></div></div>
+
+<p>
+You can treat the cell as a terminal and input your command list. When run, it will treat the commands the same as a normal Linux shell.
+</p>
+
+<h2 id="hack">Hack</h2>
+<h3 id="part-1">Part 1</h3>
+<p>
+"Come up with your own student view of this procedure to show your tools are installed. It is best that you keep the few things you understand, add things later as you start to understand them." (I understand this to mean an installation/version check on the tools.)
+</p>
+<p>
+Let's check the installation and version status of Python, Ruby, and Jupyter, and also check to see whether the student directory exists.
+</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="n">echo</span> <span class="s">"Python version check"</span>
+<span class="n">which</span> <span class="n">python</span>
+<span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+<span class="n">echo</span> <span class="s">""</span>
+
+<span class="n">echo</span> <span class="s">"Ruby version check"</span>
+<span class="n">which</span> <span class="n">ruby</span>
+<span class="n">ruby</span> <span class="o">-</span><span class="n">v</span>
+<span class="n">echo</span> <span class="s">""</span>
+
+<span class="n">echo</span> <span class="s">"Jupyter version check"</span>
+<span class="n">which</span> <span class="n">jupyter</span>
+<span class="n">jupyter</span> <span class="o">--</span><span class="n">version</span>
+<span class="n">echo</span> <span class="s">""</span>
+
+<span class="n">echo</span> <span class="s">"Try to navigate to VSCode directory and display its contents."</span>
+<span class="n">cd</span> <span class="o">~</span>
+<span class="n">cd</span> <span class="n">vscode</span>
+<span class="n">ls</span>
+<span class="n">echo</span> <span class="s">""</span>
+</code></pre></div></div>
+
+<h3 id="part-2">Part 2</h3>
+<p>
+"Name and create blog notes on some Linux commands you will use frequently."
+</p>
+<p>
+Some of the most commonly used Bash commands are:
+</p>
+
+<ul>
+  <li>ls (Lists the contents of the present directory.)</li>
+  <li>pwd (Reports the current working directory.)</li>
+  <li>cd (Changes the present working directory.)</li>
+  <li>echo “” (Prints the contents of the “”.)</li>
+  <li>man (command) (Gives a user manual on said command.)</li>
+  <li>which (Searches for the filename provided.)</li>
+</ul>
+
+<h3 id="part-3">Part 3</h3>
+<p>
+"Is there anything we use to verify tools we installed? Review versions?"
+</p>
+<p>
+The command <mark>--version</mark> can be used to retrieve the version numbers of tools. The command <mark>which</mark> can be used to find the filepath of whatever it is given, or returns /dev/null if it does not exist.
+</p>
+
+<h3 id="part-4">Part 4</h3>
+<p>
+"How would you update a repository? Use the git command line?"
+</p>
+<p>
+To update a Github repository, do this:
+</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Navigate to your desired directory
+</span><span class="err">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">sfremy</span><span class="o">/</span><span class="n">csablog</span><span class="p">.</span><span class="n">git</span>
+</code></pre></div></div>
+
+<p>
+This should replace the file specified in the <mark>clone</mark> command with the latest version linked.
+</p>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/sfremy">sfremy</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>

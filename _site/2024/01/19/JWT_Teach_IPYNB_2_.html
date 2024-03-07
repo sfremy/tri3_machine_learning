@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Jwt_teach_ipynb_2_ | CompSci Blogs</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Jwt_teach_ipynb_2_" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What are JWT tokens?" />
+<meta property="og:description" content="What are JWT tokens?" />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/2024/01/19/JWT_Teach_IPYNB_2_.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/2024/01/19/JWT_Teach_IPYNB_2_.html" />
+<meta property="og:site_name" content="CompSci Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-19T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Jwt_teach_ipynb_2_" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-19T00:00:00-08:00","datePublished":"2024-01-19T00:00:00-08:00","description":"What are JWT tokens?","headline":"Jwt_teach_ipynb_2_","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/01/19/JWT_Teach_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/2024/01/19/JWT_Teach_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=63838579fe931db354edc3470df1d250d658967f">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/csablog/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4200/csablog/">CompSci Blogs</a></h1>
+
+        
+
+        <p>August 2023 to June 2024</p>
+
+        
+        <p class="view"><a href="https://github.com/sfremy/csablog">View the Project on GitHub <small>sfremy/csablog</small></a></p>
+        
+
+        
+
+        <header class="site-header">
+
+  <div id="header">
+    <nav>
+      <ul>
+        <li class="fork"><a href="/csablog/">Home</a></li>
+        <li class="fork"><a href="/csablog/csp">CompSci</a></li>
+        <li class="fork"><a href="/csablog/blogs">Blogs</a></li>
+        <li class="fork"><a href="/csablog/login">Login</a></li>
+        <li class="title"><a href="https://github.com/sfremy/csablog#readme">View On GitHub</a></li>
+      </ul>
+    </nav>
+  </div><!-- end header -->
+</header>
+
+        
+      </header>
+      <section>
+
+      <small>19 January 2024</small>
+<h1>Jwt_teach_ipynb_2_</h1>
+
+<p class="view">by </p>
+
+<h3 id="what-are-jwt-tokens">What are JWT tokens?</h3>
+
+<ul>
+  <li>JSON Web Tokens (JWTs) are open standards (RFC 7519) for securely transmitting information between parties as JSON objects.</li>
+  <li>They’re compact, URL-safe, and self-contained, making them ideal for authentication and authorization in web APIs.</li>
+  <li>They consist of three parts, separated by dots:
+    <ul>
+      <li>Header: Specifies the type of token and the algorithm used to sign it.</li>
+      <li>Payload: Contains the actual information being transmitted, such as user data or claims.</li>
+      <li>Signature: Ensures the integrity of the token and prevents tampering. It’s generated using a secret key.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="how-to-impelent-jwt-in-a-flask-project">How to impelent JWT in a Flask Project:</h4>
+
+<h5 id="1-install-the-flask-jwt-extended-extension">1. Install the Flask-JWT-Extended extension:</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">Flask</span><span class="o">-</span><span class="n">JWT</span><span class="o">-</span><span class="n">Extended</span>
+</code></pre></div></div>
+
+<h5 id="2-create-flask-app-and-initialize-jwt">2. Create Flask app and initialize JWT:</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">JWTManager</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'JWT_SECRET_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'your-secret-key'</span>  <span class="c1"># Replace with a strong secret key
+</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">JWTManager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h5 id="3-create-a-login-endpoint-to-generate-tokens">3. Create a login endpoint to generate tokens:</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="c1"># Verify user credentials
+</span>    <span class="k">if</span> <span class="n">verify_credentials</span><span class="p">():</span>  <span class="c1"># Replace with your authentication logic
+</span>        <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id</span><span class="p">()</span>
+        <span class="n">access_token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">identity</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>  <span class="c1"># JWT creation
+</span>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'access_token'</span><span class="p">:</span> <span class="n">access_token</span><span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'error'</span><span class="p">:</span> <span class="s">'Invalid credentials'</span><span class="p">}),</span> <span class="mi">401</span>
+</code></pre></div></div>
+
+<h5 id="4-protect-routes-with-jwt_required-decorator">4. Protect routes with @jwt_required decorator:</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/protected'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span>
+<span class="k">def</span> <span class="nf">protected</span><span class="p">():</span>
+    <span class="n">current_user</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>  <span class="c1"># Access user information from token
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'message'</span><span class="p">:</span> <span class="s">'Hello, {}!'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">current_user</span><span class="p">)})</span>
+
+</code></pre></div></div>
+
+<p><strong>VALIDATION</strong></p>
+
+<p>Validating a JWT (JSON Web Token) takes multiple steps. Below is a simple Python script using the PyJWT library to demonstrate JWT validation.</p>
+
+<p>Make sure to install the library first</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">PyJWT</span>
+<span class="n">pip3</span> <span class="k">for</span> <span class="n">macbook</span>
+</code></pre></div></div>
+
+<p>After that, run this python script using the PyJWT library to demonstrate JWT validation</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jwt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="c1"># Your secret key for JWT validation
+</span><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'your_secret_key_here'</span>
+<span class="c1"># What the code above does is import the jwt module(which is apart of the PyJWT library,) 
+# We also import datetime and timedelta from the standard python library
+# Then finally set a secret key variable, which is used to encode and decode the JWT
+</span>
+<span class="k">def</span> <span class="nf">create_jwt</span><span class="p">():</span>
+    <span class="c1"># Create a sample JWT for demonstration purposes
+</span>    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'user_id'</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+        <span class="s">'username'</span><span class="p">:</span> <span class="s">'john_doe'</span><span class="p">,</span>
+        <span class="s">'exp'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Token expiration time
+</span>    <span class="p">}</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s">'HS256'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">token</span>
+<span class="c1"># The create_jwt function generates a sample JWT
+# It creates a payload with a user ID, username, and an expiration time (exp) set to one hour from the current UTC time. 
+# The payload is then encoded using the jwt.encode function, and the resulting token is returned.
+</span><span class="k">def</span> <span class="nf">validate_jwt</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Decode and verify the JWT
+</span>        <span class="n">payload</span> <span class="o">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">,</span> <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="s">'HS256'</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"JWT Validation Successful!"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Payload:"</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">jwt</span><span class="p">.</span><span class="n">ExpiredSignatureError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"JWT has expired. Please obtain a new token."</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">jwt</span><span class="p">.</span><span class="n">InvalidTokenError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Invalid JWT. Authentication failed."</span><span class="p">)</span>
+<span class="c1"># The validate_jwt function takes a JWT token as input and tries to decode and verify it
+# If the validation is successful, it prints a success message + the decoded payload.
+# If the token has expired, it catches the ExpiredSignatureError and prints a message about token expiration
+# If the token is invalid for other reasons, it catches the InvalidTokenError and prints a message about authentication failure.
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="c1"># Step 1: Create a JWT
+</span>    <span class="n">jwt_token</span> <span class="o">=</span> <span class="n">create_jwt</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Generated JWT:"</span><span class="p">,</span> <span class="n">jwt_token</span><span class="p">)</span>
+
+    <span class="c1"># Step 2: Validate the JWT
+</span>    <span class="n">validate_jwt</span><span class="p">(</span><span class="n">jwt_token</span><span class="p">)</span>
+
+<span class="c1"># The __main__ block demonstrates the usage of the script. It first creates a JWT using the create_jwt function and prints the generated JWT
+# Then validates the JWT using the validate_jwt function.
+# he output will show the success message or specific error messages based on the validation result.
+</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Generated JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9obl9kb2UiLCJleHAiOjE3MDU2OTU5MzV9.Kw_fOaEHQTlrt-XqIqiMzZFGaBncX9_Bl8GVNFItRhc
+JWT Validation Successful!
+Payload: {'user_id': 123, 'username': 'john_doe', 'exp': 1705695935}
+</code></pre></div></div>
+
+<p><strong>What this does is:</strong></p>
+
+<p>-Creates a JWT with a sample payload.</p>
+
+<p>-Prints the generated JWT.</p>
+
+<p>-Validates the JWT and prints the payload if the validation is successful.</p>
+
+<p>** Replace ‘your_secret_key_here’ with your actual secret key. This script uses the HS256 algorithm for HMAC with SHA-256, but you can choose a different algorithm based on different requirements.</p>
+
+<h2 id="postman-introduction">Postman Introduction:</h2>
+
+<p>Postman is a tool that helps applications communicate over the internet by making it easy to send and receive messages (requests and responses).
+It’s like a friendly messenger ensuring smooth conversations between different software, making it essential for testing and debugging during app development.
+Functionality:</p>
+
+<p>Postman allows developers to test APIs, ensuring that services work as expected by sending and receiving requests in a user-friendly interface.
+It also helps in checking and managing cookies, crucial for apps to remember information during their interactions with servers.</p>
+
+<h2 id="example-of-a-piece-of-code">Example of a piece of code</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span> <span class="n">Postman</span> <span class="n">Test</span> <span class="n">Script</span>
+<span class="n">pm</span><span class="p">.</span><span class="n">test</span><span class="p">(</span><span class="s">"Response Status is 200"</span><span class="p">,</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="n">pm</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">to</span><span class="p">.</span><span class="n">have</span><span class="p">.</span><span class="n">status</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>In Postman, this script is like an automated check to make sure that when you ask a server for something (like data from an API), the server responds with a “200 OK” message, which means everything went well. If the response isn’t a “200 OK,” the script lets you know that something might be wrong, helping you catch issues when testing your application. It’s a way to quickly see if the server is behaving as expected.</p>
+
+<p><img src="Screenshot 2024-01-19 at 11.23.44 AM.png" alt="Screenshot 2024-01-19 at 11.23.44 AM.png" /></p>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/sfremy">sfremy</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>

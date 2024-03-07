@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Flask Server | CompSci Blogs</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Flask Server" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Flask server setup." />
+<meta property="og:description" content="Flask server setup." />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/c1.4/2023/09/12/flask_server_IPYNB_2_.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/c1.4/2023/09/12/flask_server_IPYNB_2_.html" />
+<meta property="og:site_name" content="CompSci Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-12T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Flask Server" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-12T00:00:00-07:00","datePublished":"2023-09-12T00:00:00-07:00","description":"Flask server setup.","headline":"Flask Server","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/c1.4/2023/09/12/flask_server_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/c1.4/2023/09/12/flask_server_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=63838579fe931db354edc3470df1d250d658967f">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/csablog/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4200/csablog/">CompSci Blogs</a></h1>
+
+        
+
+        <p>August 2023 to June 2024</p>
+
+        
+        <p class="view"><a href="https://github.com/sfremy/csablog">View the Project on GitHub <small>sfremy/csablog</small></a></p>
+        
+
+        
+
+        <header class="site-header">
+
+  <div id="header">
+    <nav>
+      <ul>
+        <li class="fork"><a href="/csablog/">Home</a></li>
+        <li class="fork"><a href="/csablog/csp">CompSci</a></li>
+        <li class="fork"><a href="/csablog/blogs">Blogs</a></li>
+        <li class="fork"><a href="/csablog/login">Login</a></li>
+        <li class="title"><a href="https://github.com/sfremy/csablog#readme">View On GitHub</a></li>
+      </ul>
+    </nav>
+  </div><!-- end header -->
+</header>
+
+        
+      </header>
+      <section>
+
+      <small>12 September 2023</small>
+<h1>Flask Server</h1>
+
+<p class="view">by </p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">python</span> <span class="o">--</span><span class="n">bg</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+
+<span class="c1"># initialize a flask application (app)
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">supports_credentials</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">origins</span><span class="o">=</span><span class="s">'*'</span><span class="p">)</span>  <span class="c1"># Allow all origins (*)
+</span>
+<span class="c1"># ... your existing Flask
+</span>
+<span class="c1"># add an api endpoint to flask app
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+    <span class="c1"># start a list, to be used like a information database
+</span>    <span class="n">InfoDb</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># add a row to list, an Info record
+</span>    <span class="n">InfoDb</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s">"FirstName"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+        <span class="s">"LastName"</span><span class="p">:</span> <span class="s">"Mortensen"</span><span class="p">,</span>
+        <span class="s">"DOB"</span><span class="p">:</span> <span class="s">"October 21"</span><span class="p">,</span>
+        <span class="s">"Residence"</span><span class="p">:</span> <span class="s">"San Diego"</span><span class="p">,</span>
+        <span class="s">"Email"</span><span class="p">:</span> <span class="s">"jmortensen@powayusd.com"</span><span class="p">,</span>
+        <span class="s">"Owns_Cars"</span><span class="p">:</span> <span class="p">[</span><span class="s">"2015-Fusion"</span><span class="p">,</span> <span class="s">"2011-Ranger"</span><span class="p">,</span> <span class="s">"2003-Excursion"</span><span class="p">,</span> <span class="s">"1997-F350"</span><span class="p">,</span> <span class="s">"1969-Cadillac"</span><span class="p">]</span>
+    <span class="p">})</span>
+
+    <span class="c1"># add a row to list, an Info record
+</span>    <span class="n">InfoDb</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s">"FirstName"</span><span class="p">:</span> <span class="s">"Shane"</span><span class="p">,</span>
+        <span class="s">"LastName"</span><span class="p">:</span> <span class="s">"Lopez"</span><span class="p">,</span>
+        <span class="s">"DOB"</span><span class="p">:</span> <span class="s">"February 27"</span><span class="p">,</span>
+        <span class="s">"Residence"</span><span class="p">:</span> <span class="s">"San Diego"</span><span class="p">,</span>
+        <span class="s">"Email"</span><span class="p">:</span> <span class="s">"slopez@powayusd.com"</span><span class="p">,</span>
+        <span class="s">"Owns_Cars"</span><span class="p">:</span> <span class="p">[</span><span class="s">"2021-Insight"</span><span class="p">]</span>
+    <span class="p">})</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">InfoDb</span><span class="p">)</span>
+
+<span class="c1"># add an HTML endpoint to flask app
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+    <span class="n">html_content</span> <span class="o">=</span> <span class="s">"""
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hellox&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Hello, World!&lt;/h2&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    """</span>
+    <span class="k">return</span> <span class="n">html_content</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="c1"># starts flask server on default port, http://127.0.0.1:5001
+</span>    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5001</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># After app.run(), see the the Python process
+</span><span class="n">lsof</span> <span class="o">-</span><span class="n">i</span> <span class="p">:</span><span class="mi">5001</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND     PID    USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+python3.9 21824 remyliu    4u  IPv4 0x3c93380141362051      0t0  TCP localhost:commplex-link (LISTEN)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'http://127.0.0.1:5001/api/data'</span><span class="p">)</span>
+<span class="n">res</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'DOB': 'October 21',
+  'Email': 'jmortensen@powayusd.com',
+  'FirstName': 'John',
+  'LastName': 'Mortensen',
+  'Owns_Cars': ['2015-Fusion',
+   '2011-Ranger',
+   '2003-Excursion',
+   '1997-F350',
+   '1969-Cadillac'],
+  'Residence': 'San Diego'},
+ {'DOB': 'February 27',
+  'Email': 'slopez@powayusd.com',
+  'FirstName': 'Shane',
+  'LastName': 'Lopez',
+  'Owns_Cars': ['2021-Insight'],
+  'Residence': 'San Diego'}]
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="n">lsof</span> <span class="o">-</span><span class="n">i</span> <span class="p">:</span><span class="mi">5001</span> <span class="o">|</span> <span class="n">awk</span> <span class="s">'/Python/ {print $2}'</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">kill</span> <span class="o">-</span><span class="mi">9</span>
+
+</code></pre></div></div>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/sfremy">sfremy</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>

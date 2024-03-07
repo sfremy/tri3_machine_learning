@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SASS Javascript Login and Signup Page | CompSci Blogs</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="SASS Javascript Login and Signup Page" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Team teach about SASS Javascript login and signup page" />
+<meta property="og:description" content="Team teach about SASS Javascript login and signup page" />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/2024/01/22/SASS_Javascript_Signup_IPYNB_2_.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/2024/01/22/SASS_Javascript_Signup_IPYNB_2_.html" />
+<meta property="og:site_name" content="CompSci Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-22T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SASS Javascript Login and Signup Page" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-22T00:00:00-08:00","datePublished":"2024-01-22T00:00:00-08:00","description":"Team teach about SASS Javascript login and signup page","headline":"SASS Javascript Login and Signup Page","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/01/22/SASS_Javascript_Signup_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/2024/01/22/SASS_Javascript_Signup_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=63838579fe931db354edc3470df1d250d658967f">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/csablog/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4200/csablog/">CompSci Blogs</a></h1>
+
+        
+
+        <p>August 2023 to June 2024</p>
+
+        
+        <p class="view"><a href="https://github.com/sfremy/csablog">View the Project on GitHub <small>sfremy/csablog</small></a></p>
+        
+
+        
+
+        <header class="site-header">
+
+  <div id="header">
+    <nav>
+      <ul>
+        <li class="fork"><a href="/csablog/">Home</a></li>
+        <li class="fork"><a href="/csablog/csp">CompSci</a></li>
+        <li class="fork"><a href="/csablog/blogs">Blogs</a></li>
+        <li class="fork"><a href="/csablog/login">Login</a></li>
+        <li class="title"><a href="https://github.com/sfremy/csablog#readme">View On GitHub</a></li>
+      </ul>
+    </nav>
+  </div><!-- end header -->
+</header>
+
+        
+      </header>
+      <section>
+
+      <small>22 January 2024</small>
+<h1>SASS Javascript Login and Signup Page</h1>
+
+<p class="view">by </p>
+
+<h2 id="what-exactly-is-sass">What exactly is SASS?</h2>
+<ul>
+  <li>SASS stands for Syntactically Awesome Stylesheet</li>
+  <li>SASS adds extra toools to make styling websites easier and faster. Is is essentially a way to make writing and organzing styles more convinient.</li>
+</ul>
+
+<h3 id="1-why-use-sass-for-your-javascript-login-and-signup-page">1. Why use SASS for your Javascript Login and Signup Page?</h3>
+<ul>
+  <li>SASS allows you to write flexible and organized stylesheets by using features like variables, mixins, and nesting. This can make your code more maintainable and easier to understand, especially as your project grows</li>
+  <li>SASS allows you to use variables to store values, such as colors or font sizes</li>
+  <li>SASS code can be compiled into regular CSS, ensuring compatibility with all browsers</li>
+</ul>
+
+<h3 id="variables-in-sass">Variables in SASS:</h3>
+<ul>
+  <li>Variables in SASS allow you to store values that you can reuse throughout your stylesheet. For instance, you can use them for colors, font sizes, or any other value you want to reuse. This makes it easy to maintain a consistent look and feel across your application.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="c1">#3498db;
+</span><span class="n">body</span> <span class="p">{</span>
+  <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Cell In[1], line 1
+    $primary-color: #3498db;
+    ^
+SyntaxError: invalid syntax
+</code></pre></div></div>
+
+<h3 id="mixins-for-reusable-styles">Mixins for Reusable Styles:</h3>
+<ul>
+  <li>Mixins are a powerful feature in SASS that lets you define a set of styles and reuse them throughout your stylesheet. This allows for a cleaner and more modular code by encapsulating styles into reusable patterns.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">mixin</span> <span class="n">button</span><span class="o">-</span><span class="n">styles</span> <span class="p">{</span>
+    <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">;</span>
+    <span class="n">color</span><span class="p">:</span> <span class="c1">#fff;
+</span>    <span class="n">padding</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">20</span><span class="n">px</span><span class="p">;</span>
+    <span class="n">border</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span>
+    <span class="n">border</span><span class="o">-</span><span class="n">radius</span><span class="p">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">button</span> <span class="p">{</span>
+    <span class="o">@</span><span class="n">include</span> <span class="n">button</span><span class="o">-</span><span class="n">styles</span><span class="p">;</span>
+  <span class="p">}</span>  
+</code></pre></div></div>
+
+<h3 id="nesting-in-sass">Nesting in SASS:</h3>
+<ul>
+  <li>SASS allows you to nest your styles which makes your stylesheet more readable and mirroring the HTML structure. This feature enhances maintainability and helps you visualize the hierarchy of your styles.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nav</span> <span class="p">{</span>
+    <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">;</span>
+    <span class="n">ul</span> <span class="p">{</span>
+      <span class="nb">list</span><span class="o">-</span><span class="n">style</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span>
+      <span class="n">li</span> <span class="p">{</span>
+        <span class="n">display</span><span class="p">:</span> <span class="n">inline</span><span class="o">-</span><span class="n">block</span><span class="p">;</span>
+        <span class="n">margin</span><span class="o">-</span><span class="n">right</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span><span class="p">;</span>
+        <span class="n">a</span> <span class="p">{</span>
+          <span class="n">color</span><span class="p">:</span> <span class="c1">#fff;
+</span>          <span class="n">text</span><span class="o">-</span><span class="n">decoration</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>  
+</code></pre></div></div>
+
+<h2 id="javascript-integration">JavaScript Integration</h2>
+<h3 id="handling-asynchronous-requests">Handling Asynchronous Requests:</h3>
+<ul>
+  <li>Asynchronous programming in JavaScript is crucial for tasks like fetching data from a server without blocking other operations. In the context of a login/signup page, it ensures a smooth user experience while the authentication process is underway.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="n">function</span> <span class="n">loginUser</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Asynchronous</span> <span class="n">logic</span> <span class="n">using</span> <span class="n">Fetch</span> <span class="n">API</span>
+  <span class="p">}</span>  
+</code></pre></div></div>
+
+<h3 id="fetch-api">Fetch API:</h3>
+<ul>
+  <li>The Fetch API is a modern JavaScript API for making network requests. It simplifies the process of sending HTTP requests and handling responses. It is widely used for AJAX-style requests in web applications.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fetch</span><span class="p">(</span><span class="s">'https://api.example.com/login'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="n">method</span><span class="p">:</span> <span class="s">'POST'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="n">body</span><span class="p">:</span> <span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">({</span> <span class="n">username</span><span class="p">:</span> <span class="s">'user'</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="s">'pass'</span> <span class="p">}),</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<h3 id="sending-post-requests">Sending POST Requests:</h3>
+<ul>
+  <li>In the context of a login/signup page, sending a POST request is fundamental for securely transmitting user credentials to the server. The Fetch API is employed to initiate this request, and the ‘POST’ method indicates the intention to submit data.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="n">function</span> <span class="n">loginUser</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch</span><span class="p">(</span><span class="s">'https://api.example.com/login'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="n">method</span><span class="p">:</span> <span class="s">'POST'</span><span class="p">,</span>
+      <span class="n">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="n">body</span><span class="p">:</span> <span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">({</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span> <span class="p">}),</span>
+    <span class="p">});</span>
+  
+    <span class="n">const</span> <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">();</span>
+    <span class="o">//</span> <span class="n">Handle</span> <span class="n">response</span> <span class="n">data</span>
+  <span class="p">}</span>  
+</code></pre></div></div>
+
+<h3 id="error-handling-for-http-status-codes">Error Handling for HTTP Status Codes:</h3>
+<ul>
+  <li>Proper error handling is essential for providing a meaningful user experience. This section covers how to handle various HTTP status codes returned by the server, such as success (200), unauthorized (401), forbidden (403), and not found (404). Each status code triggers a specific response, ensuring the user is informed of the outcome of their request.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Successful</span> <span class="n">login</span> <span class="n">logic</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status</span> <span class="o">===</span> <span class="mi">401</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Handle</span> <span class="n">unauthorized</span> <span class="n">access</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status</span> <span class="o">===</span> <span class="mi">403</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Handle</span> <span class="n">forbidden</span> <span class="n">access</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status</span> <span class="o">===</span> <span class="mi">404</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Handle</span> <span class="ow">not</span> <span class="n">found</span>
+  <span class="p">}</span>  
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'https://drishyamody.github.io/DJAKTri2//2023/01/22/SASS_Javascript_Login.html'</span>
+</code></pre></div></div>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/sfremy">sfremy</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>
