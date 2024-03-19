@@ -2,7 +2,7 @@
 toc: true
 comments: true
 layout: post
-title: Titanic Frontend
+title: Can You Survive the Titanic?
 description: 
 type: hacks
 courses: { compsci: {week: 26} }
@@ -11,7 +11,6 @@ courses: { compsci: {week: 26} }
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titanic Database Frontend</title>
     <style>
         body {
             font-family: Arial, sans-serif;
