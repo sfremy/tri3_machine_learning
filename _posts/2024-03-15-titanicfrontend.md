@@ -85,8 +85,6 @@ courses: { compsci: {week: 26} }
         <input type="number" id="parch" name="parch" required>
         <label for="fare">Passenger Fare:</label>
         <input type="number" id="fare" name="fare" min="0" required>
-        <label for="embarked">Port of Embarkation (C/Q/S):</label>
-        <input type="text" id="embarked" name="embarked" required>
         <label for="alone">Alone (true/false):</label>
         <input type="text" id="alone" name="alone" required>
         <button type="submit">Predict Survival</button>
@@ -103,7 +101,6 @@ courses: { compsci: {week: 26} }
                 sibsp: parseInt(formData.get('sibsp')),
                 parch: parseInt(formData.get('parch')),
                 fare: parseFloat(formData.get('fare')),
-                embarked: formData.get('embarked'),
                 alone: formData.get('alone') === 'true'
             };
             fetch('http://127.0.0.1:8086/api/titanic/predict', {
