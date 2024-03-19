@@ -37,7 +37,7 @@ courses: { compsci: {week: 26} }
         label {
             display: block;
             margin-bottom: 10px;
-            color: black; /* Added this line to make labels black */
+            color: black;
         }
 
         input[type="text"],
@@ -128,7 +128,7 @@ courses: { compsci: {week: 26} }
                 alone: formData.get('alone') === 'true'
             };
 
-            fetch('http://127.0.0.1:8086/api/users/predict', {  // Adjusted the URL to match your Flask backend endpoint
+            fetch('http://127.0.0.1:8086/api/titanic/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -137,7 +137,7 @@ courses: { compsci: {week: 26} }
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('result').innerText = data.message;
+                document.getElementById('result').innerText = data.prediction;
             })
             .catch(error => {
                 console.error('Error:', error);
