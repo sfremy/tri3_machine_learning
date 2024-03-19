@@ -115,7 +115,7 @@ courses: { compsci: {week: 26} }
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('result').innerText = data.prediction;
+                document.getElementById('result').innerText = data.alive_proba;
             })
             .catch(error => {
                 console.error('Error:', error);
