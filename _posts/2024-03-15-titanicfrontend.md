@@ -99,8 +99,6 @@ button:hover {
     <input type="number" id="parch" name="parch" min="0" max="99" required>
     <label for="fare">Fare:</label>
     <input type="number" id="fare" name="fare" min="0" step="0.01" required>
-    <label for="embarked">Embarked (C, Q, S):</label>
-    <input type="text" id="embarked" name="embarked" pattern="[CQS]" title="Enter C, Q, or S" required>
     <label for="alone">Alone:</label>
     <select id="alone" name="alone" required>
       <option value="true">True</option>
@@ -122,14 +120,12 @@ document.getElementById("predictionForm").addEventListener("submit", function(ev
 function predictSurvival() {
   // Get input values from the form
   var formData = {
-    name: document.getElementById("name").value,
     pclass: parseInt(document.getElementById("class").value),
     sex: document.getElementById("sex").value,
     age: parseFloat(document.getElementById("age").value),
     sibsp: parseInt(document.getElementById("sibsp").value),
     parch: parseInt(document.getElementById("parch").value),
     fare: parseFloat(document.getElementById("fare").value),
-    embarked: document.getElementById("embarked").value,
     alone: document.getElementById("alone").value
   };
   const apiUrl = "http://127.0.0.1:8086/api/titanic/predict"
