@@ -23,7 +23,7 @@
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-15T00:00:00-07:00","datePublished":"2024-03-15T00:00:00-07:00","description":"Titanic Passenger Survival Prediction","headline":"Can You Survive the Titanic?","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/03/15/titanicfrontend.html"},"url":"http://0.0.0.0:4200/csablog/2024/03/15/titanicfrontend.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=8f8ae1319f2183be19a65ef6e602ac4f63a03c14">
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=30a80adbd093946b5bd394f9776f8159cbd8c22d">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -159,8 +159,8 @@ button:hover {
     <input type="number" id="class" name="class" min="1" max="3" required="" />
     <label for="sex">Sex:</label>
     <select id="sex" name="sex" required="">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
+      <option value="1">Male</option>
+      <option value="0">Female</option>
     </select>
     <label for="age">Age:</label>
     <input type="number" id="age" name="age" min="1" max="199" required="" />
@@ -172,8 +172,8 @@ button:hover {
     <input type="number" id="fare" name="fare" min="0" step="0.01" required="" />
     <label for="alone">Alone:</label>
     <select id="alone" name="alone" required="">
-      <option value="true">True</option>
-      <option value="false">False</option>
+      <option value="1">True</option>
+      <option value="0">False</option>
     </select>
     <button type="submit">Predict Survival</button>
   </form>

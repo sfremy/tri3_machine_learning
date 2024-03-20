@@ -88,8 +88,8 @@ button:hover {
     <input type="number" id="class" name="class" min="1" max="3" required>
     <label for="sex">Sex:</label>
     <select id="sex" name="sex" required>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
+      <option value="1">Male</option>
+      <option value="0">Female</option>
     </select>
     <label for="age">Age:</label>
     <input type="number" id="age" name="age" min="1" max="199" required>
@@ -101,8 +101,8 @@ button:hover {
     <input type="number" id="fare" name="fare" min="0" step="0.01" required>
     <label for="alone">Alone:</label>
     <select id="alone" name="alone" required>
-      <option value="true">True</option>
-      <option value="false">False</option>
+      <option value="1">True</option>
+      <option value="0">False</option>
     </select>
     <button type="submit">Predict Survival</button>
   </form>
