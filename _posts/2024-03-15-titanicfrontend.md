@@ -71,21 +71,21 @@ courses: { compsci: {week: 26} }
     <div id="result"></div>
     <form id="passengerForm">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" value="JohnDoe" required>
         <label for="pclass">Passenger Class (1st, 2nd, 3rd):</label>
-        <input type="number" id="pclass" name="pclass" min="1" max="3" required>
+        <input type="number" id="pclass" name="pclass" min="1" max="3" value="1" required>
         <label for="sex">Sex (male/female):</label>
-        <input type="text" id="sex" name="sex" required>
+        <input type="text" id="sex" name="sex" value="male" required>
         <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required>
+        <input type="number" id="age" name="age" value="1" required>
         <label for="sibsp">Number of Siblings/Spouses Aboard:</label>
-        <input type="number" id="sibsp" name="sibsp" required>
+        <input type="number" id="sibsp" name="sibsp" value="1" required>
         <label for="parch">Number of Parents/Children Aboard:</label>
-        <input type="number" id="parch" name="parch" required>
+        <input type="number" id="parch" name="parch" value="1" required>
         <label for="fare">Passenger Fare:</label>
-        <input type="number" id="fare" name="fare" min="0" required>
+        <input type="number" id="fare" name="fare" min="0" value="1" required>
         <label for="alone">Alone (true/false):</label>
-        <input type="text" id="alone" name="alone" required>
+        <input type="text" id="alone" name="alone" value="true" required>
         <button type="submit">Predict Survival</button>
     </form>
     <script>

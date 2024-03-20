@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ML, NBA Data | CompSci Blogs</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="ML, NBA Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html" />
+<meta property="og:site_name" content="CompSci Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-05T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ML, NBA Data" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-05T00:00:00-08:00","datePublished":"2024-03-05T00:00:00-08:00","description":"None","headline":"ML, NBA Data","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=a62c0afb9c6abeb590933e0f768d222a8af14fb3">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/csablog/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4200/csablog/">CompSci Blogs</a></h1>
+
+        
+
+        <p>August 2023 to June 2024</p>
+
+        
+        <p class="view"><a href="https://github.com/sfremy/tri3_machine_learning">View the Project on GitHub <small>sfremy/tri3_machine_learning</small></a></p>
+        
+
+        
+
+        <header class="site-header">
+
+  <div id="header">
+    <nav>
+      <ul>
+        <li class="fork"><a href="/csablog/">Home</a></li>
+        <li class="fork"><a href="/csablog/csp">CompSci</a></li>
+        <li class="fork"><a href="/csablog/blogs">Blogs</a></li>
+        <li class="fork"><a href="/csablog/login">Login</a></li>
+        <li class="title"><a href="https://github.com/sfremy/tri3_machine_learning#readme">View On GitHub</a></li>
+      </ul>
+    </nav>
+  </div><!-- end header -->
+</header>
+
+        
+      </header>
+      <section>
+
+      <small>5 March 2024</small>
+<h1>ML, NBA Data</h1>
+
+<p class="view">by </p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Uncomment the following lines to install the required packages
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">opendatasets</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: opendatasets in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (0.1.22)
+Requirement already satisfied: tqdm in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from opendatasets) (4.66.2)
+Requirement already satisfied: kaggle in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from opendatasets) (1.6.6)
+Requirement already satisfied: click in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from opendatasets) (8.1.7)
+Requirement already satisfied: six&gt;=1.10 in /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages (from kaggle-&gt;opendatasets) (1.15.0)
+Requirement already satisfied: certifi in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from kaggle-&gt;opendatasets) (2023.7.22)
+Requirement already satisfied: python-dateutil in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from kaggle-&gt;opendatasets) (2.8.2)
+Requirement already satisfied: requests in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from kaggle-&gt;opendatasets) (2.31.0)
+Requirement already satisfied: python-slugify in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from kaggle-&gt;opendatasets) (8.0.4)
+Requirement already satisfied: urllib3 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from kaggle-&gt;opendatasets) (2.0.7)
+Requirement already satisfied: bleach in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from kaggle-&gt;opendatasets) (6.1.0)
+Requirement already satisfied: webencodings in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from bleach-&gt;kaggle-&gt;opendatasets) (0.5.1)
+Requirement already satisfied: text-unidecode&gt;=1.3 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from python-slugify-&gt;kaggle-&gt;opendatasets) (1.3)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from requests-&gt;kaggle-&gt;opendatasets) (3.3.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from requests-&gt;kaggle-&gt;opendatasets) (3.4)
+
+[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m A new release of pip is available: [0m[31;49m23.3.2[0m[39;49m -&gt; [0m[32;49m24.0[0m
+[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m To update, run: [0m[32;49m/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip[0m
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pandas in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (2.2.1)
+Requirement already satisfied: numpy&lt;2,&gt;=1.22.4 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from pandas) (1.26.4)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from pandas) (2023.4)
+Requirement already satisfied: tzdata&gt;=2022.7 in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (from pandas) (2024.1)
+Requirement already satisfied: six&gt;=1.5 in /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.15.0)
+
+[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m A new release of pip is available: [0m[31;49m23.3.2[0m[39;49m -&gt; [0m[32;49m24.0[0m
+[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m To update, run: [0m[32;49m/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip[0m
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">opendatasets</span> <span class="k">as</span> <span class="n">od</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">od</span><span class="p">.</span><span class="n">download</span><span class="p">(</span><span class="s">'https://www.kaggle.com/datasets/vivovinco/20222023-nba-player-stats-regular'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Skipping, found downloaded files in "./20222023-nba-player-stats-regular" (use force=True to force download)
+
+
+
+
+
+'{"username":"rayanesouissi","key":"e3f3bbe826834d5b209084ba2714f3fe"}\n'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'20222023-nba-player-stats-regular/2022-2023 NBA Player Stats - Playoffs.csv'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'cp1252'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">';'</span><span class="p">)</span>
+
+<span class="n">df</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rk</th>
+      <th>Player</th>
+      <th>Pos</th>
+      <th>Age</th>
+      <th>Tm</th>
+      <th>G</th>
+      <th>GS</th>
+      <th>MP</th>
+      <th>FG</th>
+      <th>FGA</th>
+      <th>...</th>
+      <th>FT%</th>
+      <th>ORB</th>
+      <th>DRB</th>
+      <th>TRB</th>
+      <th>AST</th>
+      <th>STL</th>
+      <th>BLK</th>
+      <th>TOV</th>
+      <th>PF</th>
+      <th>PTS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Bam Adebayo</td>
+      <td>C</td>
+      <td>25</td>
+      <td>MIA</td>
+      <td>23</td>
+      <td>23</td>
+      <td>37.0</td>
+      <td>7.3</td>
+      <td>15.1</td>
+      <td>...</td>
+      <td>0.821</td>
+      <td>2.7</td>
+      <td>7.1</td>
+      <td>9.9</td>
+      <td>3.7</td>
+      <td>0.9</td>
+      <td>0.7</td>
+      <td>2.7</td>
+      <td>3.1</td>
+      <td>17.9</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Santi Aldama</td>
+      <td>PF</td>
+      <td>22</td>
+      <td>MEM</td>
+      <td>6</td>
+      <td>0</td>
+      <td>16.8</td>
+      <td>2.5</td>
+      <td>5.5</td>
+      <td>...</td>
+      <td>1.000</td>
+      <td>1.2</td>
+      <td>3.2</td>
+      <td>4.3</td>
+      <td>1.2</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.8</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Nickeil Alexander-Walker</td>
+      <td>SG</td>
+      <td>24</td>
+      <td>MIN</td>
+      <td>5</td>
+      <td>4</td>
+      <td>29.6</td>
+      <td>3.0</td>
+      <td>7.0</td>
+      <td>...</td>
+      <td>0.667</td>
+      <td>0.2</td>
+      <td>1.8</td>
+      <td>2.0</td>
+      <td>1.4</td>
+      <td>0.6</td>
+      <td>0.2</td>
+      <td>0.8</td>
+      <td>1.8</td>
+      <td>8.4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Grayson Allen</td>
+      <td>SG</td>
+      <td>27</td>
+      <td>MIL</td>
+      <td>5</td>
+      <td>5</td>
+      <td>29.8</td>
+      <td>3.8</td>
+      <td>8.2</td>
+      <td>...</td>
+      <td>0.857</td>
+      <td>0.2</td>
+      <td>2.2</td>
+      <td>2.4</td>
+      <td>1.8</td>
+      <td>0.4</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>1.4</td>
+      <td>11.6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Jarrett Allen</td>
+      <td>C</td>
+      <td>24</td>
+      <td>CLE</td>
+      <td>5</td>
+      <td>5</td>
+      <td>38.2</td>
+      <td>4.4</td>
+      <td>7.2</td>
+      <td>...</td>
+      <td>0.500</td>
+      <td>3.0</td>
+      <td>4.4</td>
+      <td>7.4</td>
+      <td>2.4</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>0.6</td>
+      <td>2.0</td>
+      <td>9.4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>212</th>
+      <td>213</td>
+      <td>Ziaire Williams</td>
+      <td>SF</td>
+      <td>21</td>
+      <td>MEM</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>0.5</td>
+      <td>1.8</td>
+      <td>...</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.3</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>213</th>
+      <td>214</td>
+      <td>Trae Young</td>
+      <td>PG</td>
+      <td>24</td>
+      <td>ATL</td>
+      <td>6</td>
+      <td>6</td>
+      <td>38.3</td>
+      <td>10.0</td>
+      <td>24.8</td>
+      <td>...</td>
+      <td>0.860</td>
+      <td>0.8</td>
+      <td>2.8</td>
+      <td>3.7</td>
+      <td>10.2</td>
+      <td>1.7</td>
+      <td>0.7</td>
+      <td>4.0</td>
+      <td>1.8</td>
+      <td>29.2</td>
+    </tr>
+    <tr>
+      <th>214</th>
+      <td>215</td>
+      <td>Omer Yurtseven</td>
+      <td>C</td>
+      <td>24</td>
+      <td>MIA</td>
+      <td>8</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>0.3</td>
+      <td>0.9</td>
+      <td>...</td>
+      <td>0.000</td>
+      <td>0.4</td>
+      <td>0.3</td>
+      <td>0.6</td>
+      <td>0.1</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.1</td>
+      <td>0.3</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>215</th>
+      <td>216</td>
+      <td>Cody Zeller</td>
+      <td>C</td>
+      <td>30</td>
+      <td>MIA</td>
+      <td>21</td>
+      <td>0</td>
+      <td>8.3</td>
+      <td>1.0</td>
+      <td>1.7</td>
+      <td>...</td>
+      <td>0.400</td>
+      <td>0.5</td>
+      <td>1.8</td>
+      <td>2.3</td>
+      <td>0.3</td>
+      <td>0.1</td>
+      <td>0.2</td>
+      <td>0.6</td>
+      <td>1.3</td>
+      <td>2.2</td>
+    </tr>
+    <tr>
+      <th>216</th>
+      <td>217</td>
+      <td>Ivica Zubac</td>
+      <td>C</td>
+      <td>25</td>
+      <td>LAC</td>
+      <td>5</td>
+      <td>5</td>
+      <td>26.0</td>
+      <td>3.4</td>
+      <td>6.0</td>
+      <td>...</td>
+      <td>0.750</td>
+      <td>3.2</td>
+      <td>6.4</td>
+      <td>9.6</td>
+      <td>0.6</td>
+      <td>0.6</td>
+      <td>0.2</td>
+      <td>2.2</td>
+      <td>1.6</td>
+      <td>9.2</td>
+    </tr>
+  </tbody>
+</table>
+<p>217 rows × 30 columns</p>
+</div>
+
+<h4 id="median-ppg-among-nba-players">Median PPG Among NBA Players</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[</span><span class="s">'PTS'</span><span class="p">].</span><span class="n">median</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6.5
+</code></pre></div></div>
+
+<h4 id="range-maximum---minimum-values-of-nba-players">Range (Maximum - Minimum Values) of NBA Players</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[</span><span class="s">'PTS'</span><span class="p">].</span><span class="nb">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s">'PTS'</span><span class="p">].</span><span class="nb">min</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>34.5
+</code></pre></div></div>
+
+<h4 id="average-field-goals-made-among-players">Average Field Goals Made Among Players</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[</span><span class="s">'FG'</span><span class="p">].</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.193548387096774
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>G</th>
+      <th>GS</th>
+      <th>MP</th>
+      <th>FG</th>
+      <th>FGA</th>
+      <th>FG%</th>
+      <th>3P</th>
+      <th>3PA</th>
+      <th>3P%</th>
+      <th>2P</th>
+      <th>2PA</th>
+      <th>2P%</th>
+      <th>eFG%</th>
+      <th>FT</th>
+      <th>FTA</th>
+      <th>FT%</th>
+      <th>ORB</th>
+      <th>DRB</th>
+      <th>TRB</th>
+      <th>AST</th>
+      <th>STL</th>
+      <th>BLK</th>
+      <th>TOV</th>
+      <th>PF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>82</th>
+      <td>25</td>
+      <td>15</td>
+      <td>0</td>
+      <td>6.9</td>
+      <td>0.7</td>
+      <td>1.9</td>
+      <td>0.345</td>
+      <td>0.5</td>
+      <td>1.6</td>
+      <td>0.333</td>
+      <td>0.1</td>
+      <td>0.3</td>
+      <td>0.400</td>
+      <td>0.483</td>
+      <td>0.1</td>
+      <td>0.1</td>
+      <td>1.000</td>
+      <td>0.3</td>
+      <td>0.8</td>
+      <td>1.1</td>
+      <td>0.3</td>
+      <td>0.1</td>
+      <td>0.1</td>
+      <td>0.0</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>27</td>
+      <td>20</td>
+      <td>20</td>
+      <td>35.7</td>
+      <td>5.1</td>
+      <td>9.8</td>
+      <td>0.518</td>
+      <td>0.9</td>
+      <td>2.3</td>
+      <td>0.391</td>
+      <td>4.2</td>
+      <td>7.5</td>
+      <td>0.557</td>
+      <td>0.564</td>
+      <td>2.3</td>
+      <td>3.5</td>
+      <td>0.652</td>
+      <td>2.5</td>
+      <td>3.6</td>
+      <td>6.0</td>
+      <td>2.6</td>
+      <td>0.6</td>
+      <td>0.7</td>
+      <td>1.0</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>25</td>
+      <td>6</td>
+      <td>0</td>
+      <td>5.2</td>
+      <td>0.3</td>
+      <td>0.8</td>
+      <td>0.400</td>
+      <td>0.2</td>
+      <td>0.7</td>
+      <td>0.250</td>
+      <td>0.2</td>
+      <td>0.2</td>
+      <td>1.000</td>
+      <td>0.500</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.2</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.2</td>
+      <td>0.2</td>
+      <td>0.3</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>183</th>
+      <td>25</td>
+      <td>10</td>
+      <td>1</td>
+      <td>18.4</td>
+      <td>1.7</td>
+      <td>4.5</td>
+      <td>0.378</td>
+      <td>1.1</td>
+      <td>2.9</td>
+      <td>0.379</td>
+      <td>0.6</td>
+      <td>1.6</td>
+      <td>0.375</td>
+      <td>0.500</td>
+      <td>0.3</td>
+      <td>0.4</td>
+      <td>0.750</td>
+      <td>0.3</td>
+      <td>1.4</td>
+      <td>1.7</td>
+      <td>1.1</td>
+      <td>0.2</td>
+      <td>0.1</td>
+      <td>0.4</td>
+      <td>1.5</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>33</td>
+      <td>22</td>
+      <td>22</td>
+      <td>39.7</td>
+      <td>9.4</td>
+      <td>20.1</td>
+      <td>0.468</td>
+      <td>1.3</td>
+      <td>3.5</td>
+      <td>0.359</td>
+      <td>8.1</td>
+      <td>16.5</td>
+      <td>0.492</td>
+      <td>0.500</td>
+      <td>6.8</td>
+      <td>8.5</td>
+      <td>0.806</td>
+      <td>2.1</td>
+      <td>4.3</td>
+      <td>6.5</td>
+      <td>5.9</td>
+      <td>1.8</td>
+      <td>0.6</td>
+      <td>1.9</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>25</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3.7</td>
+      <td>0.0</td>
+      <td>0.7</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.7</td>
+      <td>0.7</td>
+      <td>1.000</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.3</td>
+      <td>0.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>34</td>
+      <td>5</td>
+      <td>3</td>
+      <td>18.4</td>
+      <td>1.6</td>
+      <td>3.8</td>
+      <td>0.421</td>
+      <td>1.2</td>
+      <td>3.4</td>
+      <td>0.353</td>
+      <td>0.4</td>
+      <td>0.4</td>
+      <td>1.000</td>
+      <td>0.579</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.2</td>
+      <td>2.0</td>
+      <td>2.2</td>
+      <td>1.2</td>
+      <td>0.4</td>
+      <td>0.4</td>
+      <td>0.4</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>35</td>
+      <td>5</td>
+      <td>0</td>
+      <td>17.8</td>
+      <td>2.4</td>
+      <td>4.6</td>
+      <td>0.522</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.500</td>
+      <td>0.4</td>
+      <td>0.6</td>
+      <td>0.667</td>
+      <td>0.739</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>1.2</td>
+      <td>2.0</td>
+      <td>0.6</td>
+      <td>0.2</td>
+      <td>1.2</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <th>179</th>
+      <td>32</td>
+      <td>3</td>
+      <td>0</td>
+      <td>5.7</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.7</td>
+      <td>1.3</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.3</td>
+      <td>0.0</td>
+      <td>1.7</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>19</td>
+      <td>7</td>
+      <td>0</td>
+      <td>1.9</td>
+      <td>0.1</td>
+      <td>0.6</td>
+      <td>0.250</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>0.000</td>
+      <td>0.1</td>
+      <td>0.3</td>
+      <td>0.500</td>
+      <td>0.250</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.1</td>
+      <td>0.6</td>
+      <td>0.7</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>151 rows × 25 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Clean data
+</span><span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s">'Age'</span><span class="p">,</span> <span class="s">'FG'</span><span class="p">,</span> <span class="s">'FG%'</span><span class="p">,</span> <span class="s">'3P'</span><span class="p">,</span> <span class="s">'3P%'</span><span class="p">,</span> <span class="s">'FT'</span><span class="p">,</span> <span class="s">'FT%'</span><span class="p">]]</span>
+
+<span class="n">df_new</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>FG</th>
+      <th>FG%</th>
+      <th>3P</th>
+      <th>3P%</th>
+      <th>FT</th>
+      <th>FT%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25</td>
+      <td>7.3</td>
+      <td>0.481</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>3.4</td>
+      <td>0.821</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22</td>
+      <td>2.5</td>
+      <td>0.455</td>
+      <td>1.2</td>
+      <td>0.467</td>
+      <td>0.3</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>24</td>
+      <td>3.0</td>
+      <td>0.429</td>
+      <td>2.0</td>
+      <td>0.400</td>
+      <td>0.4</td>
+      <td>0.667</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>27</td>
+      <td>3.8</td>
+      <td>0.463</td>
+      <td>2.8</td>
+      <td>0.483</td>
+      <td>1.2</td>
+      <td>0.857</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>24</td>
+      <td>4.4</td>
+      <td>0.611</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.6</td>
+      <td>0.500</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>212</th>
+      <td>21</td>
+      <td>0.5</td>
+      <td>0.286</td>
+      <td>0.3</td>
+      <td>0.333</td>
+      <td>0.0</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>213</th>
+      <td>24</td>
+      <td>10.0</td>
+      <td>0.403</td>
+      <td>3.0</td>
+      <td>0.333</td>
+      <td>6.2</td>
+      <td>0.860</td>
+    </tr>
+    <tr>
+      <th>214</th>
+      <td>24</td>
+      <td>0.3</td>
+      <td>0.286</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>215</th>
+      <td>30</td>
+      <td>1.0</td>
+      <td>0.571</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.3</td>
+      <td>0.400</td>
+    </tr>
+    <tr>
+      <th>216</th>
+      <td>25</td>
+      <td>3.4</td>
+      <td>0.567</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>2.4</td>
+      <td>0.750</td>
+    </tr>
+  </tbody>
+</table>
+<p>217 rows × 7 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="k">def</span> <span class="nf">replace_score</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="c1"># Build distinct data frames on PTS column
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">df_new</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'PTS'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="n">replace_score</span><span class="p">)</span>
+
+<span class="c1"># Split arrays in random train 70%, random test 30%, using stratified sampling (same proportion of survived in both sets) and a fixed random state (42
+# The number 42 is often used in examples and tutorials because of its cultural significance in fields like science fiction (it's the "Answer to the Ultimate Question of Life, The Universe, and Everything" in The Hitchhiker's Guide to the Galaxy by Douglas Adams). But in practice, the actual value doesn't matter; what's important is that it's set to a consistent value.
+# X_train is the DataFrame containing the features for the training set.
+# X_test is the DataFrame containing the features for the test set.
+# y-train is the 'survived' status for each passenger in the training set, corresponding to the X_train data.
+# y_test is the 'survived' status for each passenger in the test set, corresponding to the X_test data.
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Train a decision tree classifier
+</span><span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">dt</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Test the model
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">dt</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'DecisionTreeClassifier Accuracy: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>  
+
+<span class="c1"># Train a logistic regression model
+</span><span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">logreg</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Test the model
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">logreg</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'LogisticRegression Accuracy: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>  
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DecisionTreeClassifier Accuracy: 93.94%
+LogisticRegression Accuracy: 98.48%
+</code></pre></div></div>
+
+<h3 id="predicting-survival">Predicting Survival</h3>
+<p>So, now we are ready to play the game… “Would I have survived the Titanic?”.</p>
+
+<p>Insert your own data in the code.  Look at your analysis and consider how you would travel today.</p>
+<ul>
+  <li>Data description:
+    <ul>
+      <li>pclass - Passenger Class (1 = 1st; 2 = 2nd; 3 = 3rd)</li>
+      <li>name - Name</li>
+      <li>sex - male or female</li>
+      <li>age - number of year</li>
+      <li>sibsp - number of Siblings/Spouses Aboard</li>
+      <li>parch - number of Parents/Children Aboard</li>
+      <li>fare - passenger fare 0 to 512</li>
+      <li>embarked - Port of Embarkation (C = Cherbourg; Q = Queenstown; S = Southampton)</li>
+      <li>alone - boolean True or False</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c1"># Logistic regression model is used to predict the probability
+</span>
+<span class="c1"># Define a new player
+</span><span class="n">player</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s">'Age'</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">],</span>
+    <span class="s">'FG'</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> 
+    <span class="s">'FG%'</span><span class="p">:</span> <span class="p">[.</span><span class="mi">50</span><span class="p">],</span>
+    <span class="s">'3P'</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+    <span class="s">'3P%'</span><span class="p">:</span> <span class="p">[.</span><span class="mi">20</span><span class="p">],</span> 
+    <span class="s">'FT'</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> 
+    <span class="s">'FT%'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+<span class="p">})</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+<span class="n">new_player</span> <span class="o">=</span> <span class="n">player</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">new_player</span><span class="p">)</span>
+
+<span class="c1"># Predict the survival probability for the new passenger
+</span><span class="n">dead_proba</span><span class="p">,</span> <span class="n">alive_proba</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">logreg</span><span class="p">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">new_player</span><span class="p">))</span>
+
+<span class="c1"># Print the survival probability
+</span><span class="k">print</span><span class="p">(</span><span class="s">'&lt;10 probability: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">dead_proba</span><span class="p">))</span>  
+<span class="k">print</span><span class="p">(</span><span class="s">'&gt;10 probability: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">alive_proba</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>FG</th>
+      <th>FG%</th>
+      <th>3P</th>
+      <th>3P%</th>
+      <th>FT</th>
+      <th>FT%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25</td>
+      <td>8</td>
+      <td>0.5</td>
+      <td>4</td>
+      <td>0.2</td>
+      <td>6</td>
+      <td>0.9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>FG</th>
+      <th>FG%</th>
+      <th>3P</th>
+      <th>3P%</th>
+      <th>FT</th>
+      <th>FT%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25</td>
+      <td>8</td>
+      <td>0.5</td>
+      <td>4</td>
+      <td>0.2</td>
+      <td>6</td>
+      <td>0.9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;10 probability: 0.00%
+&gt;10 probability: 100.00%
+</code></pre></div></div>
+
+<h3 id="improve-your-chances">Improve your chances</h3>
+<p>Is there anything you could do to improve your chances?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Decision tree model is used to determine the importance of each feature
+</span>
+<span class="n">importances</span> <span class="o">=</span> <span class="n">dt</span><span class="p">.</span><span class="n">feature_importances_</span>
+<span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">importance</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">new_passenger</span><span class="p">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">importances</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'The importance of </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s"> is: </span><span class="si">{</span><span class="n">importance</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/sfremy">sfremy</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>
