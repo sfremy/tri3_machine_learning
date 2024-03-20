@@ -84,8 +84,6 @@ button:hover {
 
 <div class="container">
   <form id="predictionForm">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" pattern="[A-Za-z]+" title="Name must contain only alphabet letters" required>
     <label for="class">Class (1, 2, 3):</label>
     <input type="number" id="class" name="class" min="1" max="3" required>
     <label for="sex">Sex:</label>
