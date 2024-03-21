@@ -85,20 +85,24 @@ button:hover {
 <div class="container">
   <form id="predictionForm">
     <label for="class">Class (1, 2, 3):</label>
-    <input type="number" id="class" name="class" min="1" max="3" required>
+    <select id="class" name="class" required>
+      <option value="1">1st</option>
+      <option value="2">2nd</option>    
+      <option value="3">3rd</option>    
+    </select>
     <label for="sex">Sex:</label>
     <select id="sex" name="sex" required>
       <option value="1">Male</option>
       <option value="0">Female</option>
     </select>
     <label for="age">Age:</label>
-    <input type="number" id="age" name="age" min="1" max="199" required>
+    <input type="number" id="age" name="age" min="1" max="199" value = "1" required>
     <label for="sibsp">Sibsp (number of siblings/spouses aboard):</label>
-    <input type="number" id="sibsp" name="sibsp" min="0" max="99" required>
+    <input type="number" id="sibsp" name="sibsp" min="0" max="99"  value = "0" required>
     <label for="parch">Parch (number of parents/children aboard):</label>
-    <input type="number" id="parch" name="parch" min="0" max="99" required>
+    <input type="number" id="parch" name="parch" min="0" max="99" value = "0" required>
     <label for="fare">Fare:</label>
-    <input type="number" id="fare" name="fare" min="0" step="0.01" required>
+    <input type="number" id="fare" name="fare" min="0" step="0.01" value = "10" required>
     <label for="alone">Alone:</label>
     <select id="alone" name="alone" required>
       <option value="1">True</option>
@@ -106,7 +110,6 @@ button:hover {
     </select>
     <button type="submit">Predict Survival</button>
   </form>
-
   <div id="surv"></div>
   <div id="death"></div>
 </div>
@@ -142,8 +145,8 @@ function predictSurvival() {
   .then(response => response.json())
   .then(data => {
     // Display prediction result
-    document.getElementById("surv").innerHTML = data.survival;
-    document.getElementById("death").innerHTML = data.death
+    document.getElementById("surv").innerHTML = "Your Chance of Survival: " + (100*data.alive_chance).toFixed(2) + "%";
+    document.getElementById("death").innerHTML = "Your Chance of Survival: " + (100*data.dead_chance).toFixed(2) + "%";
   })
   .catch(error => {
     console.error("Error:", error);
