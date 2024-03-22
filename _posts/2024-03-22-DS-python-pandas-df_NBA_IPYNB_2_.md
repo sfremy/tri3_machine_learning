@@ -9,8 +9,8 @@ type: ccc
 
 ```python
 # Uncomment the following lines to install the required packages
-!pip install opendatasets
-!pip install pandas
+!pip install opendatasets #download the data set
+!pip install pandas #data manipulation and analysis
 ```
 
     Defaulting to user installation because normal site-packages is not writeable
@@ -53,7 +53,22 @@ od.download('https://www.kaggle.com/datasets/vivovinco/20222023-nba-player-stats
 
 ```
 
-    Skipping, found downloaded files in "./20222023-nba-player-stats-regular" (use force=True to force download)
+    Please provide your Kaggle credentials to download this dataset. Learn more: http://bit.ly/kaggle-creds
+    Your Kaggle username:Your Kaggle Key:
+
+    /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:34: NotOpenSSLWarning: urllib3 v2.0 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+      warnings.warn(
+
+
+    Downloading 20222023-nba-player-stats-regular.zip to ./20222023-nba-player-stats-regular
+
+
+    100%|██████████| 43.4k/43.4k [00:00<00:00, 2.58MB/s]
+
+    
+
+
+    
 
 
 
@@ -426,7 +441,7 @@ df['FG'].mean()
 
 ```python
 #Clean data
-df_new = df[['Age', 'FG', 'FG%', '3P', '3P%', 'FT', 'FT%']]
+df_new = df[['Age', 'FG', 'FG%', '3P', '3P%', 'FT', 'FT%']] 
 
 df_new
 ```
@@ -581,44 +596,67 @@ df_new
 
 
 ```python
+# Import the train_test_split function for splitting data into train and test sets
 from sklearn.model_selection import train_test_split
+# Import the DecisionTreeClassifier for decision tree modeling
 from sklearn.tree import DecisionTreeClassifier
+# Import the LogisticRegression for logistic regression modeling
 from sklearn.linear_model import LogisticRegression
+# Import the accuracy_score function to compute the accuracy of predictions
 from sklearn.metrics import accuracy_score
 
+# Define a function to replace scores greater than 10 with 1, otherwise 0
 def replace_score(score):
     if score > 10:
         return 1
     else:
         return 0
 
-# Build distinct data frames on PTS column
-x = df_new
-y = df['PTS'].apply(replace_score)
+# Prepare the feature matrix (x) and target vector (y) based on the 'PTS' column
+x = df_new  # Assumes df_new is a pre-processed DataFrame ready for modeling
+y = df['PTS'].apply(replace_score)  # Apply the replace_score function to each point value
 
-X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42) #split x and y data frames into a training and a verification set
+# Split the dataset into training and testing sets, with 30% of data as test set, and a fixed random state for reproducibility
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
 
-# Train a decision tree classifier
-dt = DecisionTreeClassifier() #training model
-dt.fit(X_train, y_train) 
+# Initialize and train a decision tree classifier on the training data
+dt = DecisionTreeClassifier()
+dt.fit(X_train, y_train)
 
-# Test the model
+# Make predictions on the test set and calculate the accuracy of the decision tree model
 y_pred = dt.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print('DecisionTreeClassifier Accuracy: {:.2%}'.format(accuracy))  #testing the accuracy of the model's predictions using the verification data
+print('DecisionTreeClassifier Accuracy: {:.2%}'.format(accuracy))  # Print the accuracy of the decision tree model
 
-# Train a logistic regression model
-logreg = LogisticRegression() #same thing with different model
+# Initialize and train a logistic regression model on the training data
+logreg = LogisticRegression()
 logreg.fit(X_train, y_train)
 
-# Test the model
+# Make predictions on the test set and calculate the accuracy of the logistic regression model
 y_pred = logreg.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print('LogisticRegression Accuracy: {:.2%}'.format(accuracy))  
+print('LogisticRegression Accuracy: {:.2%}'.format(accuracy))  # Print the accuracy of the logistic regression model
 ```
 
     DecisionTreeClassifier Accuracy: 93.94%
     LogisticRegression Accuracy: 98.48%
+
+
+
+```python
+from sklearn import svm
+from sklearn import datasets
+
+from joblib import dump, load
+
+dump(logreg, 'nba_model_save.joblib') 
+```
+
+
+
+
+    ['nba_model_save.joblib']
+
 
 
 ### Predicting Survival
@@ -638,133 +676,28 @@ Insert your own data in the code.  Look at your analysis and consider how you wo
 
 
 ```python
-import numpy as np
+import numpy as np  # Importing the NumPy library for numerical operations
 
-# Logistic regression model is used to predict the probability
-
-# Define a new player
+# Define a new player's data as a DataFrame with specific basketball-related statistics
 player = pd.DataFrame({
-    'Age': [25],
-    'FG': [8], 
-    'FG%': [.50],
-    '3P': [4],
-    '3P%': [.20], 
-    'FT': [6], 
-    'FT%': [1], 
+    'Age': [29],  
+    'FG': [10],    
+    'FG%': [.2],  
+    '3P': [4],    
+    '3P%': [.20],  
+    'FT': [2],    
+    'FT%': [1],   
 })
 
-display(player)
-new_player = player.copy()
-display(new_player)
+# Use the trained logistic regression model (logreg) to predict the probability
+# of scoring less than 10 points ('dead') and more than 10 points ('alive')
+above10_proba, below10_proba = np.squeeze(logreg.predict_proba(player))
 
-# Predict the survival probability for the new player
-dead_proba, alive_proba = np.squeeze(logreg.predict_proba(new_player))
-
-# Print the survival probability
-print('<10 probability: {:.2%}'.format(dead_proba))  
-print('>10 probability: {:.2%}'.format(alive_proba))
+# Print the predicted probabilities for scoring less than 10 and more than 10 points
+print('below 10 PPG probability: {:.2%}'.format(below10_proba))  
+print('above 10 PPG probability: {:.2%}'.format(above10_proba))
 ```
 
+    below 10 PPG probability: 100.00%
+    above 10 PPG probability: 0.00%
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Age</th>
-      <th>FG</th>
-      <th>FG%</th>
-      <th>3P</th>
-      <th>3P%</th>
-      <th>FT</th>
-      <th>FT%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>25</td>
-      <td>8</td>
-      <td>0.5</td>
-      <td>4</td>
-      <td>0.2</td>
-      <td>6</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Age</th>
-      <th>FG</th>
-      <th>FG%</th>
-      <th>3P</th>
-      <th>3P%</th>
-      <th>FT</th>
-      <th>FT%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>25</td>
-      <td>8</td>
-      <td>0.5</td>
-      <td>4</td>
-      <td>0.2</td>
-      <td>6</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-    <10 probability: 0.00%
-    >10 probability: 100.00%
-
-
-### Improve your chances
-Is there anything you could do to improve your chances? 
-
-
-```python
-# Decision tree model is used to determine the importance of each feature
-
-importances = dt.feature_importances_
-for feature, importance in zip(new_passenger.columns, importances):
-    print(f'The importance of {feature} is: {importance}')
-```

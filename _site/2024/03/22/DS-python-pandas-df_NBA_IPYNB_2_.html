@@ -12,15 +12,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="None" />
 <meta property="og:description" content="None" />
-<link rel="canonical" href="http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html" />
-<meta property="og:url" content="http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html" />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/2024/03/22/DS-python-pandas-df_NBA_IPYNB_2_.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/2024/03/22/DS-python-pandas-df_NBA_IPYNB_2_.html" />
 <meta property="og:site_name" content="CompSci Blogs" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-03-05T00:00:00-08:00" />
+<meta property="article:published_time" content="2024-03-22T00:00:00-07:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="ML, NBA Data" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-05T00:00:00-08:00","datePublished":"2024-03-05T00:00:00-08:00","description":"None","headline":"ML, NBA Data","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/2024/03/05/DS-python-pandas-df_NBA_IPYNB_2_.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-22T00:00:00-07:00","datePublished":"2024-03-22T00:00:00-07:00","description":"None","headline":"ML, NBA Data","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/03/22/DS-python-pandas-df_NBA_IPYNB_2_.html"},"url":"http://0.0.0.0:4200/csablog/2024/03/22/DS-python-pandas-df_NBA_IPYNB_2_.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/csablog/assets/css/style.css?v=7f6c5092266e61a55d039535dbfb3d05d4546d05">
@@ -73,15 +73,15 @@
       </header>
       <section>
 
-      <small>5 March 2024</small>
+      <small>22 March 2024</small>
 <h1>ML, NBA Data</h1>
 
 <p class="view">by </p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Uncomment the following lines to install the required packages
-</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">opendatasets</span>
-<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
-</code></pre></div></div>
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">opendatasets</span> <span class="c1">#download the data set
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span> <span class="c1">#data manipulation and analysis
+</span></code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Defaulting to user installation because normal site-packages is not writeable
 Requirement already satisfied: opendatasets in /Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages (0.1.22)
@@ -121,7 +121,17 @@ Requirement already satisfied: six&gt;=1.5 in /Library/Developer/CommandLineTool
 
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Skipping, found downloaded files in "./20222023-nba-player-stats-regular" (use force=True to force download)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Please provide your Kaggle credentials to download this dataset. Learn more: http://bit.ly/kaggle-creds
+Your Kaggle username:Your Kaggle Key:
+
+/Users/rayanesouissi/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:34: NotOpenSSLWarning: urllib3 v2.0 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+
+Downloading 20222023-nba-player-stats-regular.zip to ./20222023-nba-player-stats-regular
+
+
+100%|██████████| 43.4k/43.4k [00:00&lt;00:00, 2.58MB/s]
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
@@ -467,7 +477,7 @@ Requirement already satisfied: six&gt;=1.5 in /Library/Developer/CommandLineTool
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Clean data
-</span><span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s">'Age'</span><span class="p">,</span> <span class="s">'FG'</span><span class="p">,</span> <span class="s">'FG%'</span><span class="p">,</span> <span class="s">'3P'</span><span class="p">,</span> <span class="s">'3P%'</span><span class="p">,</span> <span class="s">'FT'</span><span class="p">,</span> <span class="s">'FT%'</span><span class="p">]]</span>
+</span><span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s">'Age'</span><span class="p">,</span> <span class="s">'FG'</span><span class="p">,</span> <span class="s">'FG%'</span><span class="p">,</span> <span class="s">'3P'</span><span class="p">,</span> <span class="s">'3P%'</span><span class="p">,</span> <span class="s">'FT'</span><span class="p">,</span> <span class="s">'FT%'</span><span class="p">]]</span> 
 
 <span class="n">df_new</span>
 </code></pre></div></div>
@@ -615,44 +625,61 @@ Requirement already satisfied: six&gt;=1.5 in /Library/Developer/CommandLineTool
 <p>217 rows × 7 columns</p>
 </div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Import the train_test_split function for splitting data into train and test sets
+</span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="c1"># Import the DecisionTreeClassifier for decision tree modeling
+</span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="c1"># Import the LogisticRegression for logistic regression modeling
+</span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="c1"># Import the accuracy_score function to compute the accuracy of predictions
+</span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 
-<span class="k">def</span> <span class="nf">replace_score</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+<span class="c1"># Define a function to replace scores greater than 10 with 1, otherwise 0
+</span><span class="k">def</span> <span class="nf">replace_score</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
 
-<span class="c1"># Build distinct data frames on PTS column
-</span><span class="n">x</span> <span class="o">=</span> <span class="n">df_new</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'PTS'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="n">replace_score</span><span class="p">)</span>
-
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> <span class="c1">#split x and y data frames into a training and a verification set
+<span class="c1"># Prepare the feature matrix (x) and target vector (y) based on the 'PTS' column
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">df_new</span>  <span class="c1"># Assumes df_new is a pre-processed DataFrame ready for modeling
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'PTS'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="n">replace_score</span><span class="p">)</span>  <span class="c1"># Apply the replace_score function to each point value
 </span>
-<span class="c1"># Train a decision tree classifier
-</span><span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span> <span class="c1">#training model
-</span><span class="n">dt</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
+<span class="c1"># Split the dataset into training and testing sets, with 30% of data as test set, and a fixed random state for reproducibility
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># Test the model
+<span class="c1"># Initialize and train a decision tree classifier on the training data
+</span><span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">dt</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions on the test set and calculate the accuracy of the decision tree model
 </span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">dt</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'DecisionTreeClassifier Accuracy: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>  <span class="c1">#testing the accuracy of the model's predictions using the verification data
+<span class="k">print</span><span class="p">(</span><span class="s">'DecisionTreeClassifier Accuracy: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>  <span class="c1"># Print the accuracy of the decision tree model
 </span>
-<span class="c1"># Train a logistic regression model
-</span><span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span> <span class="c1">#same thing with different model
-</span><span class="n">logreg</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># Initialize and train a logistic regression model on the training data
+</span><span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">logreg</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-<span class="c1"># Test the model
+<span class="c1"># Make predictions on the test set and calculate the accuracy of the logistic regression model
 </span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">logreg</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'LogisticRegression Accuracy: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>  
-</code></pre></div></div>
+<span class="k">print</span><span class="p">(</span><span class="s">'LogisticRegression Accuracy: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>  <span class="c1"># Print the accuracy of the logistic regression model
+</span></code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DecisionTreeClassifier Accuracy: 93.94%
 LogisticRegression Accuracy: 98.48%
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
+
+<span class="n">dump</span><span class="p">(</span><span class="n">logreg</span><span class="p">,</span> <span class="s">'nba_model_save.joblib'</span><span class="p">)</span> 
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['nba_model_save.joblib']
 </code></pre></div></div>
 
 <h3 id="predicting-survival">Predicting Survival</h3>
@@ -675,130 +702,32 @@ LogisticRegression Accuracy: 98.48%
   </li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="c1"># Logistic regression model is used to predict the probability
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>  <span class="c1"># Importing the NumPy library for numerical operations
 </span>
-<span class="c1"># Define a new player
+<span class="c1"># Define a new player's data as a DataFrame with specific basketball-related statistics
 </span><span class="n">player</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s">'Age'</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">],</span>
-    <span class="s">'FG'</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> 
-    <span class="s">'FG%'</span><span class="p">:</span> <span class="p">[.</span><span class="mi">50</span><span class="p">],</span>
-    <span class="s">'3P'</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
-    <span class="s">'3P%'</span><span class="p">:</span> <span class="p">[.</span><span class="mi">20</span><span class="p">],</span> 
-    <span class="s">'FT'</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> 
-    <span class="s">'FT%'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+    <span class="s">'Age'</span><span class="p">:</span> <span class="p">[</span><span class="mi">29</span><span class="p">],</span>  
+    <span class="s">'FG'</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span>    
+    <span class="s">'FG%'</span><span class="p">:</span> <span class="p">[.</span><span class="mi">2</span><span class="p">],</span>  
+    <span class="s">'3P'</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span>    
+    <span class="s">'3P%'</span><span class="p">:</span> <span class="p">[.</span><span class="mi">20</span><span class="p">],</span>  
+    <span class="s">'FT'</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span>    
+    <span class="s">'FT%'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>   
 <span class="p">})</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
-<span class="n">new_player</span> <span class="o">=</span> <span class="n">player</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">display</span><span class="p">(</span><span class="n">new_player</span><span class="p">)</span>
+<span class="c1"># Use the trained logistic regression model (logreg) to predict the probability
+# of scoring less than 10 points ('dead') and more than 10 points ('alive')
+</span><span class="n">above10_proba</span><span class="p">,</span> <span class="n">below10_proba</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">logreg</span><span class="p">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">player</span><span class="p">))</span>
 
-<span class="c1"># Predict the survival probability for the new player
-</span><span class="n">dead_proba</span><span class="p">,</span> <span class="n">alive_proba</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">logreg</span><span class="p">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">new_player</span><span class="p">))</span>
-
-<span class="c1"># Print the survival probability
-</span><span class="k">print</span><span class="p">(</span><span class="s">'&lt;10 probability: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">dead_proba</span><span class="p">))</span>  
-<span class="k">print</span><span class="p">(</span><span class="s">'&gt;10 probability: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">alive_proba</span><span class="p">))</span>
+<span class="c1"># Print the predicted probabilities for scoring less than 10 and more than 10 points
+</span><span class="k">print</span><span class="p">(</span><span class="s">'below 10 PPG probability: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">below10_proba</span><span class="p">))</span>  
+<span class="k">print</span><span class="p">(</span><span class="s">'above 10 PPG probability: {:.2%}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">above10_proba</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Age</th>
-      <th>FG</th>
-      <th>FG%</th>
-      <th>3P</th>
-      <th>3P%</th>
-      <th>FT</th>
-      <th>FT%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>25</td>
-      <td>8</td>
-      <td>0.5</td>
-      <td>4</td>
-      <td>0.2</td>
-      <td>6</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Age</th>
-      <th>FG</th>
-      <th>FG%</th>
-      <th>3P</th>
-      <th>3P%</th>
-      <th>FT</th>
-      <th>FT%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>25</td>
-      <td>8</td>
-      <td>0.5</td>
-      <td>4</td>
-      <td>0.2</td>
-      <td>6</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;10 probability: 0.00%
-&gt;10 probability: 100.00%
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>below 10 PPG probability: 100.00%
+above 10 PPG probability: 0.00%
 </code></pre></div></div>
 
-<h3 id="improve-your-chances">Improve your chances</h3>
-<p>Is there anything you could do to improve your chances?</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Decision tree model is used to determine the importance of each feature
-</span>
-<span class="n">importances</span> <span class="o">=</span> <span class="n">dt</span><span class="p">.</span><span class="n">feature_importances_</span>
-<span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">importance</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">new_passenger</span><span class="p">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">importances</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'The importance of </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s"> is: </span><span class="si">{</span><span class="n">importance</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
-</code></pre></div></div>
 
 
 
