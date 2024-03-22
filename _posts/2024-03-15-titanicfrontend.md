@@ -146,7 +146,7 @@ function predictSurvival() {
   .then(data => {
     // Display prediction result
     document.getElementById("surv").innerHTML = "Your Chance of Survival: " + (100*data.alive_chance).toFixed(2) + "%";
-    document.getElementById("death").innerHTML = "Your Chance of Survival: " + (100*data.dead_chance).toFixed(2) + "%";
+    document.getElementById("death").innerHTML = "Your Chance of Death: " + (100*data.dead_chance).toFixed(2) + "%";
   })
   .catch(error => {
     console.error("Error:", error);
