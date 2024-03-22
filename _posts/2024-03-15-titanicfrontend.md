@@ -115,7 +115,7 @@ button:hover {
 </div>
 
 <script>
-document.getElementById("predictionForm").addEventListener("submit", function(event) {
+document.getElementById("predictionForm").addEventListener("submit", function(event) { //event lister tells it to do predict survival
   event.preventDefault(); // Prevent form submission
   predictSurvival(); // Call function to predict survival
 });
