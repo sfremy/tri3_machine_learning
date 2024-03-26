@@ -18,7 +18,6 @@ body {
   background-color: #212121;
   color: #fff;
 }
-
 .container {
   width: 50%;
   margin: 20px auto;
@@ -27,20 +26,16 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
 h2 {
   text-align: center;
 }
-
 form {
   margin-bottom: 20px;
 }
-
 label {
   display: block;
   margin-bottom: 5px;
 }
-
 input[type="text"],
 input[type="number"],
 select {
@@ -52,11 +47,9 @@ select {
   background-color: #444;
   color: #fff;
 }
-
 select {
   appearance: none;
 }
-
 button {
   background-color: #4CAF50;
   color: white;
@@ -66,11 +59,9 @@ button {
   cursor: pointer;
   width: 100%;
 }
-
 button:hover {
   background-color: #45a049;
 }
-
 #result {
   font-size: 18px;
   text-align: center;
