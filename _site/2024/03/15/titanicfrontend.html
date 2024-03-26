@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Can You Survive the Titanic? | CompSci Blogs</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Can You Survive the Titanic?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Titanic Passenger Survival Prediction" />
+<meta property="og:description" content="Titanic Passenger Survival Prediction" />
+<link rel="canonical" href="http://0.0.0.0:4200/csablog/2024/03/15/titanicfrontend.html" />
+<meta property="og:url" content="http://0.0.0.0:4200/csablog/2024/03/15/titanicfrontend.html" />
+<meta property="og:site_name" content="CompSci Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-15T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Can You Survive the Titanic?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-15T00:00:00-07:00","datePublished":"2024-03-15T00:00:00-07:00","description":"Titanic Passenger Survival Prediction","headline":"Can You Survive the Titanic?","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/03/15/titanicfrontend.html"},"url":"http://0.0.0.0:4200/csablog/2024/03/15/titanicfrontend.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=dede5bbed995ae2a4c5ca6e70a1f2da896ab8f1e">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/csablog/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4200/csablog/">CompSci Blogs</a></h1>
+
+        
+
+        <p>August 2023 to June 2024</p>
+
+        
+        <p class="view"><a href="https://github.com/sfremy/tri3_machine_learning">View the Project on GitHub <small>sfremy/tri3_machine_learning</small></a></p>
+        
+
+        
+
+        <header class="site-header">
+
+  <div id="header">
+    <nav>
+      <ul>
+        <li class="fork"><a href="/csablog/">Home</a></li>
+        <li class="fork"><a href="/csablog/csp">CompSci</a></li>
+        <li class="fork"><a href="/csablog/blogs">Blogs</a></li>
+        <li class="fork"><a href="/csablog/login">Login</a></li>
+        <li class="title"><a href="https://github.com/sfremy/tri3_machine_learning#readme">View On GitHub</a></li>
+      </ul>
+    </nav>
+  </div><!-- end header -->
+</header>
+
+        
+      </header>
+      <section>
+
+      <small>15 March 2024</small>
+<h1>Can You Survive the Titanic?</h1>
+
+<p class="view">by </p>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Titanic Passenger Survival Prediction</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #212121;
+  color: #fff;
+}
+
+.container {
+  width: 50%;
+  margin: 20px auto;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: calc(100% - 18px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #444;
+  color: #fff;
+}
+
+select {
+  appearance: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#result {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<h2>Titanic Passenger Survival Prediction</h2>
+
+<div class="container">
+  <form id="predictionForm">
+    <label for="class">Class (1, 2, 3):</label>
+    <select id="class" name="class" required="">
+      <option value="1">1st</option>
+      <option value="2">2nd</option>    
+      <option value="3">3rd</option>    
+    </select>
+    <label for="sex">Sex:</label>
+    <select id="sex" name="sex" required="">
+      <option value="1">Male</option>
+      <option value="0">Female</option>
+    </select>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="1" max="199" value="1" required="" />
+    <label for="sibsp">Sibsp (number of siblings/spouses aboard):</label>
+    <input type="number" id="sibsp" name="sibsp" min="0" max="99" value="0" required="" />
+    <label for="parch">Parch (number of parents/children aboard):</label>
+    <input type="number" id="parch" name="parch" min="0" max="99" value="0" required="" />
+    <label for="fare">Fare:</label>
+    <input type="number" id="fare" name="fare" min="0" step="0.01" value="10" required="" />
+    <label for="alone">Alone:</label>
+    <select id="alone" name="alone" required="">
+      <option value="1">True</option>
+      <option value="0">False</option>
+    </select>
+    <button type="submit">Predict Survival</button>
+  </form>
+  <div id="surv"></div>
+  <div id="death"></div>
+</div>
+
+<script>
+document.getElementById("predictionForm").addEventListener("submit", function(event) { //event lister tells it to do predict survival
+  event.preventDefault(); // Prevent form submission
+  predictSurvival(); // Call function to predict survival
+});
+
+function predictSurvival() {
+  // Get input values from the form
+  var formData = {
+    pclass: parseInt(document.getElementById("class").value),
+    sex: document.getElementById("sex").value,
+    age: parseFloat(document.getElementById("age").value),
+    sibsp: parseInt(document.getElementById("sibsp").value),
+    parch: parseInt(document.getElementById("parch").value),
+    fare: parseFloat(document.getElementById("fare").value),
+    alone: document.getElementById("alone").value
+  };
+  const apiUrl = "http://127.0.0.1:8086/api/titanic/predict"
+  // Send input data to server for prediction
+  fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': 'http://127.0.0.1:4100',
+      'Access-Control-Allow-Credentials': 'true'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Display prediction result
+    document.getElementById("surv").innerHTML = "Your Chance of Survival: " + (100*data.alive_chance).toFixed(2) + "%";
+    document.getElementById("death").innerHTML = "Your Chance of Death: " + (100*data.dead_chance).toFixed(2) + "%";
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    document.getElementById("surv").innerHTML = "An error occurred. Please try again.";
+  });
+}
+</script>
+
+</body>
+</html>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/sfremy">sfremy</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>
