@@ -91,16 +91,16 @@ button:hover {
     </select>
     <!--Per Capita GDP input-->
     <label for="wealth">Per Capita Yearly GDP ($):</label>
-    <input type="number" id="wealth" name="wealth" value = "12647" required>
+    <input type="number" id="wealth" name="wealth" value = "12647" step = 'any' required>
     <!--Social Support input-->
     <label for="soc">Social Support (Scale 0 - 1)</label>
-    <input type="number" id="soc" name="soc" min="0" max="1"  value = "0.5" required>
+    <input type="number" id="soc" name="soc" min="0.0" max="1.0"  step = 'any' value = "0.5" required>
     <!--Life Expectancy input-->
     <label for="life">Life Expectancy, in years</label>
-    <input type="number" id="life" name="life" value = "50" required>
+    <input type="number" id="life" name="life" value = "50" step = 'any' required>
     <!--Freedom input-->
     <label for="freedom">Social Freedom (Scale 0 - 1)</label>
-    <input type="number" id="freedom" name="freedom" min="0" max="1" value = "0.5" required>
+    <input type="number" id="freedom" name="freedom" min="0" max="1" value = "0.5" step = 'any' required>
     <!--Year input-->
     <label for="year">What year is it?</label>
     <input type="number" id="year" name="year" value = "2020" required>

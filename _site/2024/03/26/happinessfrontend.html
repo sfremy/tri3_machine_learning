@@ -23,7 +23,7 @@
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-26T00:00:00-07:00","datePublished":"2024-03-26T00:00:00-07:00","description":"Titanic Passenger Survival Prediction","headline":"Happiness of a Fictional Country","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4200/csablog/2024/03/26/happinessfrontend.html"},"url":"http://0.0.0.0:4200/csablog/2024/03/26/happinessfrontend.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=d87193d29e7b58665f683ffd642418e37669f168">
+    <link rel="stylesheet" href="/csablog/assets/css/style.css?v=bc96e089ff1e7292348906fcd4a2105b6cbc40c2">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -162,16 +162,16 @@ button:hover {
     </select>
     <!--Per Capita GDP input-->
     <label for="wealth">Per Capita Yearly GDP ($):</label>
-    <input type="number" id="wealth" name="wealth" value="12647" required="" />
+    <input type="number" id="wealth" name="wealth" value="12647" step="any" required="" />
     <!--Social Support input-->
     <label for="soc">Social Support (Scale 0 - 1)</label>
-    <input type="number" id="soc" name="soc" min="0" max="1" value="0.5" required="" />
+    <input type="number" id="soc" name="soc" min="0.0" max="1.0" step="any" value="0.5" required="" />
     <!--Life Expectancy input-->
     <label for="life">Life Expectancy, in years</label>
-    <input type="number" id="life" name="life" value="50" required="" />
+    <input type="number" id="life" name="life" value="50" step="any" required="" />
     <!--Freedom input-->
     <label for="freedom">Social Freedom (Scale 0 - 1)</label>
-    <input type="number" id="freedom" name="freedom" min="0" max="1" value="0.5" required="" />
+    <input type="number" id="freedom" name="freedom" min="0" max="1" value="0.5" step="any" required="" />
     <!--Year input-->
     <label for="year">What year is it?</label>
     <input type="number" id="year" name="year" value="2020" required="" />
