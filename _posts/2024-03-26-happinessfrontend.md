@@ -2,7 +2,7 @@
 toc: true
 comments: true
 layout: post
-title: Can You Survive the Titanic?
+title: Happiness of a Fictional Country
 description: 
 type: hacks
 courses: { compsci: {week: 26} }
